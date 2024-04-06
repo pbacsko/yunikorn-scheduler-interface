@@ -18,6 +18,10 @@ package api
 
 import "github.com/apache/yunikorn-scheduler-interface/lib/go/si"
 
+type SchedulerAPIFactory interface {
+	RegisterResourceManager(request *si.RegisterResourceManagerRequest, callback ResourceManagerCallback) SchedulerAPI
+}
+
 type SchedulerAPI interface {
 	// Register a new RM, if it is a reconnect from previous RM, cleanup
 	// all in-memory data and resync with RM.
